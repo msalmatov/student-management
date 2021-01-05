@@ -11,7 +11,95 @@
     <title>Student management system</title>
   </head>
   <body>
-    <h1>Hello</h1>
+    @if($layout == 'index')
+        <div class='container-fluid'>
+            <div class="row">
+                <section class="col">
+                    @include("studentlist")
+                </section>
+                <section class="col"></section>
+            </div>
+        </div>
+    @elseif($layout == 'create')
+        <div class='container-fluid'>
+            <div class="row">
+                <section class="col">
+                    @include("studentlist")
+                </section>
+                <section class="col">
+                    <form action={{ url('/store') }} method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <label >CNE</label>
+                            <input name="cne" type="text" class="form-control" placeholder="Enter cne">
+                        </div>
+                        <div class="mb-3">
+                            <label >First Name</label>
+                            <input name="firstName" type="text" class="form-control" placeholder="Enter the first name">
+                        </div>
+                        <div class="mb-3">
+                            <label >Second Name</label>
+                            <input name="secondName" type="text" class="form-control" placeholder="Enter the second name">
+                        </div>
+                        <div class="mb-3">
+                            <label >Age</label>
+                            <input name="age" type="text" class="form-control" placeholder="Enter the age">
+                        </div>
+                        <div class="mb-3">
+                            <label >Speciality</label>
+                            <input name="speciality" type="text" class="form-control" placeholder="Enter Speciality">
+                        </div>
+                        <input type="submit" class="btn btn-info" value="Save" />
+                        <input type="reset" class="btn btn-warning" value="Reset" />
+                    </form>
+                </section>
+            </div>
+        </div>
+    @elseif($layout == 'show')
+        <div class='container-fluid'>
+            <div class="row">
+                <section class="col">
+                    @include("studentlist")
+                </section>
+                <section class="col"></section>
+            </div>
+        </div>
+    @elseif($layout == 'edit')
+        <div class='container-fluid'>
+            <div class="row">
+                <section class="col">
+                    @include("studentlist")
+                </section>
+                <section class="col">
+                    <form action={{ url('/update/'.$student->id) }} method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <label >CNE</label>
+                            <input value="{{ $student->cne }}" name="cne" type="text" class="form-control" placeholder="Enter cne">
+                        </div>
+                        <div class="mb-3">
+                            <label >First Name</label>
+                            <input value="{{ $student->firstName }}" name="firstName" type="text" class="form-control" placeholder="Enter the first name">
+                        </div>
+                        <div class="mb-3">
+                            <label >Second Name</label>
+                            <input value="{{ $student->secondName }}" name="secondName" type="text" class="form-control" placeholder="Enter the second name">
+                        </div>
+                        <div class="mb-3">
+                            <label >Age</label>
+                            <input value="{{ $student->age }}" name="age" type="text" class="form-control" placeholder="Enter the age">
+                        </div>
+                        <div class="mb-3">
+                            <label >Speciality</label>
+                            <input value="{{ $student->speciality }}" name="speciality" type="text" class="form-control" placeholder="Enter Speciality">
+                        </div>
+                        <input type="submit" class="btn btn-info" value="Update" />
+                        <input type="reset" class="btn btn-warning" value="Reset" />
+                    </form>
+                </section>
+            </div>
+        </div>
+    @endif
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
