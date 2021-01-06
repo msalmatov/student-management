@@ -7,27 +7,41 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <title>Student management system</title>
   </head>
   <body>
+    @include('navbar')
+
+    <div class="row header-container justify-content-center">
+        <div class="header">
+            <h1>Student Management System</h1>
+        </div>
+    </div>
+
     @if($layout == 'index')
-        <div class='container-fluid'>
+        <div class='container-fluid mt-4'>
             <div class="row">
-                <section class="col">
+                <section class="col-md-7">
                     @include("studentlist")
                 </section>
-                <section class="col"></section>
+                <section class="col-md-5"></section>
             </div>
         </div>
     @elseif($layout == 'create')
-        <div class='container-fluid'>
+        <div class='container-fluid mt-4'>
             <div class="row">
-                <section class="col">
+                <section class="col-md-7">
                     @include("studentlist")
                 </section>
-                <section class="col">
-                    <form action={{ url('/store') }} method="post">
+                <section class="col-md-5">
+                    <div class="card mb-3">
+                    <img src="https://www.timeshighereducation.com/student/sites/default/files/istock-151597880.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Enter the informations of the new student</h5>
+
+                        <form action={{ url('/store') }} method="post">
                         @csrf
                         <div class="mb-3">
                             <label >CNE</label>
@@ -52,11 +66,15 @@
                         <input type="submit" class="btn btn-info" value="Save" />
                         <input type="reset" class="btn btn-warning" value="Reset" />
                     </form>
+
+                    </div>
+                    </div>
+
                 </section>
             </div>
         </div>
     @elseif($layout == 'show')
-        <div class='container-fluid'>
+        <div class='container-fluid mt-4'>
             <div class="row">
                 <section class="col">
                     @include("studentlist")
@@ -65,41 +83,53 @@
             </div>
         </div>
     @elseif($layout == 'edit')
-        <div class='container-fluid'>
+        <div class='container-fluid mt-4'>
             <div class="row">
-                <section class="col">
+                <section class="col-md-7">
                     @include("studentlist")
                 </section>
-                <section class="col">
-                    <form action={{ url('/update/'.$student->id) }} method="post">
-                        @csrf
-                        <div class="mb-3">
-                            <label >CNE</label>
-                            <input value="{{ $student->cne }}" name="cne" type="text" class="form-control" placeholder="Enter cne">
-                        </div>
-                        <div class="mb-3">
-                            <label >First Name</label>
-                            <input value="{{ $student->firstName }}" name="firstName" type="text" class="form-control" placeholder="Enter the first name">
-                        </div>
-                        <div class="mb-3">
-                            <label >Second Name</label>
-                            <input value="{{ $student->secondName }}" name="secondName" type="text" class="form-control" placeholder="Enter the second name">
-                        </div>
-                        <div class="mb-3">
-                            <label >Age</label>
-                            <input value="{{ $student->age }}" name="age" type="text" class="form-control" placeholder="Enter the age">
-                        </div>
-                        <div class="mb-3">
-                            <label >Speciality</label>
-                            <input value="{{ $student->speciality }}" name="speciality" type="text" class="form-control" placeholder="Enter Speciality">
-                        </div>
-                        <input type="submit" class="btn btn-info" value="Update" />
-                        <input type="reset" class="btn btn-warning" value="Reset" />
-                    </form>
+                <section class="col-md-5">
+                    <div class="card mb-3">
+                    <img src="https://www.timeshighereducation.com/student/sites/default/files/istock-151597880.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Update information of the student</h5>
+
+                        <form action={{ url('/update/'.$student->id) }} method="post">
+                            @csrf
+                            <div class="mb-3">
+                                <label >CNE</label>
+                                <input value="{{ $student->cne }}" name="cne" type="text" class="form-control" placeholder="Enter cne">
+                            </div>
+                            <div class="mb-3">
+                                <label >First Name</label>
+                                <input value="{{ $student->firstName }}" name="firstName" type="text" class="form-control" placeholder="Enter the first name">
+                            </div>
+                            <div class="mb-3">
+                                <label >Second Name</label>
+                                <input value="{{ $student->secondName }}" name="secondName" type="text" class="form-control" placeholder="Enter the second name">
+                            </div>
+                            <div class="mb-3">
+                                <label >Age</label>
+                                <input value="{{ $student->age }}" name="age" type="text" class="form-control" placeholder="Enter the age">
+                            </div>
+                            <div class="mb-3">
+                                <label >Speciality</label>
+                                <input value="{{ $student->speciality }}" name="speciality" type="text" class="form-control" placeholder="Enter Speciality">
+                            </div>
+                            <input type="submit" class="btn btn-info" value="Update" />
+                            <input type="reset" class="btn btn-warning" value="Reset" />
+                        </form>
+                    </div>
+                    </div>
+
+                    
                 </section>
             </div>
         </div>
     @endif
+
+    <footer></footer>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
